@@ -50,6 +50,7 @@ import com.google.maps.GeoApiContext
 import com.google.maps.PendingResult
 import com.google.maps.internal.PolylineEncoding
 import com.google.maps.model.DirectionsResult
+import kotlinx.android.synthetic.main.activity_chat_log.*
 
 
 class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickListener {
@@ -81,6 +82,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
 
     private var carList = ArrayList<Car>()
 
+    private var showFloatingActions = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -98,6 +101,24 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
         findReferences()
         getCarList(::getAvaliableCars)
         subscribeforUpdates()
+
+        showHideFloatingActions()
+        optionsFloatingActionButton.setOnClickListener { showHideFloatingActions() }
+    }
+
+    private fun showHideFloatingActions()
+    {
+        if (showFloatingActions)
+        {
+            floatingActionsLayout.visibility = View.VISIBLE
+        }
+
+        else
+        {
+            floatingActionsLayout.visibility = View.GONE
+        }
+
+        showFloatingActions = !showFloatingActions
     }
 
     fun findReferences() {
@@ -579,6 +600,9 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
 
         carListImageView?.setOnClickListener(object:View.OnClickListener {
             override fun onClick(view:View) {
+                showFloatingActions = false
+                showHideFloatingActions()
+
                 val transaction = childFragmentManager.beginTransaction()
                 val carList: Fragment = CarListFragment()
                 transaction.replace(R.id.constraintLayout, carList)
@@ -590,12 +614,16 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
 
         gpsImageView?.setOnClickListener(object:View.OnClickListener {
             override fun onClick(view:View) {
+                showFloatingActions = false
+                showHideFloatingActions()
                 resetMap()
             }
         })
 
         infoImageView?.setOnClickListener (object:View.OnClickListener {
             override fun onClick(view:View) {
+                showFloatingActions = false
+                showHideFloatingActions()
                 val builder = AlertDialog.Builder(activity!!)
                 builder.setTitle("Map Legend")
                 val customLayout = getLayoutInflater().inflate(R.layout.legend_layout, null)
