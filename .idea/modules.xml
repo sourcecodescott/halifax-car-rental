@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/halifax-car-rental.iml" filepath="$PROJECT_DIR$/.idea/halifax-car-rental.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/halifax-car-rental.iml" filepath="$PROJECT_DIR$/halifax-car-rental.iml" />
     </modules>
   </component>
 </project>
