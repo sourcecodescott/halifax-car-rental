@@ -73,6 +73,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
             android:clickable="true"
             android:focusable="auto"
             app:backgroundTint="#E0995E"
@@ -87,11 +88,11 @@
             android:id="@+id/placeinfoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
             android:text="Info"
             app:layout_constraintBottom_toTopOf="@+id/refreshh"
             app:layout_constraintEnd_toStartOf="@+id/place_info"
-            app:layout_constraintTop_toTopOf="@+id/place_info" />
+            app:layout_constraintTop_toBottomOf="@+id/carlist" />
 
         <TextView
             android:id="@+id/carlistTextView"
@@ -99,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="Car List"
-            app:layout_constraintBottom_toTopOf="@+id/place_info"
+            app:layout_constraintBottom_toBottomOf="@+id/carlist"
             app:layout_constraintEnd_toStartOf="@+id/carlist"
             app:layout_constraintTop_toTopOf="@+id/carlist" />
 
@@ -109,9 +110,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="Refresh"
-            app:layout_constraintBottom_toBottomOf="@+id/logoutButton"
-            app:layout_constraintEnd_toStartOf="@+id/logoutButton"
-            app:layout_constraintTop_toBottomOf="@+id/place_info" />
+            app:layout_constraintBottom_toBottomOf="@+id/refreshh"
+            app:layout_constraintEnd_toStartOf="@+id/refreshh"
+            app:layout_constraintTop_toTopOf="@+id/refreshh" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
