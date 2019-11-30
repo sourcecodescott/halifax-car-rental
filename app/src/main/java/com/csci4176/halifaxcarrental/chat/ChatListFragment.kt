@@ -39,7 +39,7 @@ class ChatListFragment : Fragment() {
 
         recyclerview_user_log.adapter = adapter
 
-        getUserss()
+        getUsers()
 
         val sharedData = Globals.instance
         if(sharedData.username != "admin")
@@ -62,7 +62,7 @@ class ChatListFragment : Fragment() {
         }
     }
 
-    fun getUserss() {
+    fun getUsers() {
         refUsers.get()
             .addOnSuccessListener(object : OnSuccessListener<QuerySnapshot> {
                 override fun onSuccess(queryDocumentSnapshots: QuerySnapshot) {
