@@ -54,9 +54,13 @@ class CarDetails : AppCompatActivity() {
                                 txtPrice.text = "$"+carr.price
                                 txtYear.text = carr.year
 
-                                if(carr.isavaliable == false)
+                                if(!carr.isavaliable)
                                 {
                                     btnrent.text = "Car Not Avaliable"
+                                }
+
+                                btnrent.setOnClickListener { v ->
+                                    Globals.instance.rentedCar = carr
                                 }
                             }
 

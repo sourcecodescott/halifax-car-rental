@@ -7,12 +7,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.halifaxcarrental.ARActivity
+import com.example.halifaxcarrental.Globals
 import com.example.halifaxcarrental.R
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.cardview_car_large.*
+import kotlinx.android.synthetic.main.cardview_car_small.*
+import org.w3c.dom.Text
 
 
 class HomeFragment : Fragment() {
@@ -20,6 +28,11 @@ class HomeFragment : Fragment() {
 
     private lateinit var searchCardView: CardView
     private lateinit var arCardView: CardView
+
+    private lateinit var rentedCarText: TextView
+    private lateinit var carCardView: CardView
+
+    private lateinit var returnButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,11 +44,52 @@ class HomeFragment : Fragment() {
         getReferences(root)
         setListeners()
 
+        if (Globals.instance.rentedCar != null) {
+            returnButton.visibility = View.VISIBLE
+            rentedCarText.visibility = View.VISIBLE
+            carCardView.visibility = View.VISIBLE
+            val distanceTextView = carCardView.findViewById<TextView>(R.id.txtDistance)
+            val nameTextView = carCardView.findViewById<TextView>(R.id.txtName)
+            val makeTextView = carCardView.findViewById<TextView>(R.id.txtMake)
+            val modelTextView = carCardView.findViewById<TextView>(R.id.txtModel)
+            val yearTextView = carCardView.findViewById<TextView>(R.id.txtYear)
+            val availableTextView = carCardView.findViewById<TextView>(R.id.txtAvailable)
+            val priceTextView = carCardView.findViewById<TextView>(R.id.txtFee)
+
+            nameTextView.text = Globals.instance.rentedCar!!.name
+            makeTextView.text = Globals.instance.rentedCar!!.make
+            modelTextView.text = Globals.instance.rentedCar!!.model
+            yearTextView.text = Globals.instance.rentedCar!!.year
+            availableTextView.text = "Rented"
+            distanceTextView.text = "Nearby"
+            priceTextView.text = "$" + Globals.instance.rentedCar!!.price
+
+            Picasso.get()
+                    .load(Globals.instance.rentedCar!!.car_image)
+                    .into(carCardView.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.img_Car_Img))
+        }
+
+        else {
+            returnButton.visibility = View.GONE
+            rentedCarText.visibility = View.GONE
+            carCardView.visibility = View.GONE
+        }
+
         return root
     }
 
     fun getReferences(root: View)
     {
+        returnButton = root.findViewById(R.id.returnButton)
+        returnButton.setOnClickListener { v->
+            Globals.instance.rentedCar = null
+
+            returnButton.visibility = View.GONE
+            rentedCarText.visibility = View.GONE
+            carCardView.visibility = View.GONE
+        }
+        rentedCarText = root.findViewById(R.id.rentedCarTextView)
+        carCardView = root.findViewById(R.id.carCardView)
         searchCardView = root.findViewById(R.id.searchCardView)
         arCardView = root.findViewById(R.id.arCardView)
     }
@@ -58,7 +112,7 @@ class HomeFragment : Fragment() {
             requestCameraPermissions()
 
         if (verifyCameraPermissions()) {
-            val intent = Intent(this.context, ARActivity::class.java)
+            val intent = Intent(this.context, com.example.halifaxcarrental.ar.ARActivity::class.java)
             startActivity(intent)
         }
 

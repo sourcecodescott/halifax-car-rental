@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 package com.example.halifaxcarrental.ar
-
 import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 
 
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -33,25 +35,27 @@ import com.example.halifaxcarrental.Globals
 import com.example.halifaxcarrental.R
 import com.example.halifaxcarrental.car.Car
 import com.example.halifaxcarrental.car.CarDetails
+import com.example.halifaxcarrental.home.SearchActivity
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.snackbar.Snackbar
-import com.google.ar.core.ArCoreApk
-import com.google.ar.core.Config
-import com.google.ar.core.Frame
-import com.google.ar.core.Plane
-import com.google.ar.core.Session
-import com.google.ar.core.TrackingState
+import com.google.ar.core.*
 import com.google.ar.core.exceptions.CameraNotAvailableException
 import com.google.ar.core.exceptions.UnavailableException
+import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.ArSceneView
 import com.google.ar.sceneform.Node
+import com.google.ar.sceneform.math.Vector3
+import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.ArFragment
+import com.google.ar.sceneform.ux.TransformableNode
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.maps.model.LatLng
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.cardview_car_large.*
 
 import java.util.ArrayList
 import java.util.concurrent.CompletableFuture
@@ -82,6 +86,9 @@ class ARActivity : AppCompatActivity() {
 
     private var availableCarLayoutRenderable: ViewRenderable? = null
     private var availableCarLayout: CompletableFuture<ViewRenderable>? = null
+
+    private var modelRenderable: ModelRenderable? = null
+    private var model: CompletableFuture<ModelRenderable>? = null
 
     private var locationScene: LocationScene? = null
 
@@ -127,19 +134,35 @@ class ARActivity : AppCompatActivity() {
     }
 
     private fun createVehicleMarker(car: Car): ARLocationMarker {
-        val layout: CompletableFuture<ViewRenderable>
+        return ARLocationMarker(getView(car), getMarker(car), car)
+    }
 
-        if (car.isavaliable) {
-            layout = ViewRenderable.builder()
-                .setView(this@ARActivity, R.layout.ar_available_car_layout)
-                .build()
-        } else {
-            layout = ViewRenderable.builder()
-                .setView(this@ARActivity, R.layout.ar_rented_car_layout)
-                .build()
+    private fun getMarker(car: Car) : Node {
+        val node = Node()
+        node.renderable = modelRenderable
+        node.setOnTapListener {hitTestResult, motionEvent ->
+            ShowCarInfo(car)
         }
+        return node
+    }
 
-        return ARLocationMarker(layout, car)
+    private fun getView(car: Car) : Node {
+        val node = Node()
+        if (car.isavaliable)
+            node.renderable = availableCarLayoutRenderable
+        else node.renderable = rentedCarLayoutRenderable
+        node.setOnTapListener {hitTestResult, motionEvent ->
+            ShowCarInfo(car)
+        }
+        return node
+    }
+
+    private fun ShowCarInfo(car: Car) {
+        val intent = Intent(this, CarDetails::class.java)
+
+        val sharedData = Globals.instance
+        sharedData.car_name = car.name
+        startActivity(intent)
     }
 
     private fun getReferences() {
@@ -177,6 +200,17 @@ class ARActivity : AppCompatActivity() {
     }
 
     private fun buildRenderables() {
+        ModelRenderable.builder()
+                .setSource(this, R.raw.model)
+                .build()
+                .thenAccept { renderable: ModelRenderable? -> modelRenderable = renderable }
+                .exceptionally { //: Throwable? ->
+                    val toast = Toast.makeText(this, "Unable to load mwrker renderable", Toast.LENGTH_LONG)
+                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    toast.show()
+                    null
+                }
+
         rentedCarLayout = ViewRenderable.builder()
             .setView(this, R.layout.ar_rented_car_layout)
             .build()
@@ -192,6 +226,7 @@ class ARActivity : AppCompatActivity() {
                 try {
                     rentedCarLayoutRenderable = rentedCarLayout!!.get()
                     availableCarLayoutRenderable = availableCarLayout!!.get()
+
                     hasFinishedLoading = true
 
                     true
@@ -243,30 +278,78 @@ class ARActivity : AppCompatActivity() {
     private fun addMarkers() {
         for (ARVehicleMarker in ARVehicleMarkers!!) {
             try {
-                val renderable = ARVehicleMarker.layout.get()
+                // create the 3D location marker
+                var layoutLocationMarker = LocationMarker(
+                        ARVehicleMarker.latLng.lng,
+                        ARVehicleMarker.latLng.lat,
+                        getMarker(ARVehicleMarker.car)
+                )
 
-                val layoutLocationMarker = LocationMarker(
+                layoutLocationMarker.scaleModifier = 0.25f
+                layoutLocationMarker.node.worldPosition.y -= layoutLocationMarker.height
+                layoutLocationMarker.node.localPosition.set(90f,
+                        90f,
+                        90f)
+
+                locationScene!!.mLocationMarkers.add(layoutLocationMarker)
+
+                // anchor the node
+                /*
+                var pose = Pose.makeTranslation(layoutLocationMarker.node.worldPosition.x,
+                        layoutLocationMarker.node.worldPosition.y - 0.5f,
+                        layoutLocationMarker.node.worldPosition.z)
+
+                var anchorNode = AnchorNode(arSceneView!!.session!!.createAnchor(pose))
+                anchorNode.setParent(arSceneView!!.scene)
+
+                if (anchorNode != null)
+                    layoutLocationMarker.anchorNode.setParent(anchorNode)
+                */
+
+                // create the 2D location marker
+                layoutLocationMarker = LocationMarker(
                     ARVehicleMarker.latLng.lng,
                     ARVehicleMarker.latLng.lat,
 
                     getCarView(availableCarLayoutRenderable, ARVehicleMarker)
                 )
 
-                // An example "onRender" event, called every frame
-                // Updates the layout with the markers distance
+                layoutLocationMarker.scaleModifier = 0.5f
+
                 layoutLocationMarker.renderEvent =
                     LocationNodeRender { node ->
-                        val eView = rentedCarLayoutRenderable!!.view
+                        val eView = (layoutLocationMarker.node.renderable as ViewRenderable)!!.view
                         val carCardView = eView.findViewById<View>(R.id.carCardView)
 
+                        val imageView = carCardView.findViewById<ImageView>(R.id.img_Car_Img)
                         val distanceTextView = carCardView.findViewById<TextView>(R.id.txtDistance)
                         val nameTextView = carCardView.findViewById<TextView>(R.id.txtName)
                         val makeTextView = carCardView.findViewById<TextView>(R.id.txtMake)
                         val modelTextView = carCardView.findViewById<TextView>(R.id.txtModel)
                         val yearTextView = carCardView.findViewById<TextView>(R.id.txtYear)
+                        val priceTextView = carCardView.findViewById<TextView>(R.id.txtFee)
+                        val availableTextView = carCardView.findViewById<TextView>(R.id.txtAvailable)
 
-                        val text = node.distance.toString() + "M away"
+                        Picasso.get().load(ARVehicleMarker.car.car_image).into(imageView)
+
+                        var text = (node.distance / 1000f).toString() + "kM away"
                         distanceTextView.text = text
+                        nameTextView.text = ARVehicleMarker.car.name
+                        makeTextView.text = ARVehicleMarker.car.make
+                        modelTextView.text = ARVehicleMarker.car.model
+                        yearTextView.text = ARVehicleMarker.car.year
+                        priceTextView.text = ARVehicleMarker.car.price
+                        if (ARVehicleMarker.car.isavaliable)
+                            availableTextView.text = "Available"
+                        else
+                            availableTextView.text = "Rented"
+
+                        nameTextView.textSize = 10f
+                        makeTextView.textSize = 10f
+                        modelTextView.textSize = 10f
+                        yearTextView.textSize = 10f
+                        priceTextView.textSize = 10f
+                        availableTextView.textSize = 10f
                     }
 
                 // Adding the marker
@@ -276,10 +359,6 @@ class ARActivity : AppCompatActivity() {
             }
 
         }
-    }
-
-    private fun updateMarkerPositions() {
-        // TODO
     }
 
     private fun getCarView(

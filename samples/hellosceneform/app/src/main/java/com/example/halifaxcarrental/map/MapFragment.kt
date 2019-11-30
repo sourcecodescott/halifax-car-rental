@@ -179,7 +179,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
                 .apiKey(getString(R.string.google_maps_api_key))
                 .build()
         }
-
     }
 
 
@@ -189,7 +188,6 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
             .snippet("Company: Halifax Car Rental\n\nAddress: 123 Park Lane\n                    Halifax NS\n\nTel: 902-342-4567"))
         mMap.moveCamera(CameraUpdateFactory
             .newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM))
-
     }
 
     fun parkingSpot() {
@@ -293,6 +291,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
     }
 
     private fun addPolylinesToMap(result:DirectionsResult) {
+        Log.d(TAG, "adding polylines to map");
         Handler(Looper.getMainLooper()).post(object:Runnable {
             public override fun run() {
                 if (mPolyLinesData.size > 0)
@@ -313,12 +312,13 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
                     // This loops through all the LatLng coordinates of ONE polyline.
                     for (latLng in decodedPath)
                     {
-                        // Log.d(TAG, "run: latlng: " + latLng.toString());
+                        Log.d(TAG, "run: latlng: " + latLng.toString());
                         newDecodedPath.add(LatLng(
                             latLng.lat,
                             latLng.lng
                         ))
                     }
+                    /*
                     var polyline = mMap.addPolyline(PolylineOptions().addAll(newDecodedPath))
                     polyline.setColor(ContextCompat.getColor(activity!!, R.color.darkGrey))
                     polyline.setClickable(true)
@@ -327,16 +327,28 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
                             polyline,
                             route.legs[0]
                         )
+                    )*/
+
+                    val polylineOptions = PolylineOptions()
+                        .color(ContextCompat.getColor(activity!!, R.color.darkGrey))
+                    var polyline = mMap.addPolyline(polylineOptions.addAll(newDecodedPath))
+                    polyline.setClickable(true)
+                    mPolyLinesData.add(
+                            PolylineData(
+                                    polyline,
+                                    route.legs[0]
+                            )
                     )
+
                     // highlight the fastest route and adjust camera
                     var tempDuration = route.legs[0].duration.inSeconds
                     if (tempDuration < duration)
                     {
                         duration = tempDuration.toDouble()
                         onPolylineClick(polyline)
-                        zoomRoute(polyline.getPoints())
+                        zoomRoute(polyline.points)
                     }
-                    mSelectedMarker?.setVisible(false)
+                    mSelectedMarker?.isVisible = false
                 }
             }
         })
@@ -345,15 +357,15 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
     private fun calculateDirections(marker:Marker) {
         Log.d(TAG, "calculateDirections: calculating directions.")
         var destination = com.google.maps.model.LatLng(
-            marker.getPosition().latitude,
-            marker.getPosition().longitude
+            marker.position.latitude,
+            marker.position.longitude
         )
         var directions = DirectionsApiRequest(mGeoApiContext)
         directions.alternatives(true)
         directions.origin(
             com.google.maps.model.LatLng(
-                lat,
-                langg
+                marker.position.latitude,
+                marker.position.longitude
             )
         )
         Log.d(TAG, "calculateDirections: destination: " + destination.toString())
