@@ -141,31 +141,168 @@ Share 2-3 'problems' that your team encountered.
 Write a few sentences that describe your solution and provide a code snippet/block
 that shows your solution. Example:
 
-**Problem 1: We needed to detect shake events**
-
-A short description.
+**Problem 1: We needed to show car details from the AR activity**
 ```
-// The method we implemented that solved our problem
-public void onSensorChanged(SensorEvent event) {
-    now = event.timestamp;
-    x = event.values[0];
-    y = event.values[1];
-    z = event.values[2];
-
-    if (now - lastUpdate > 10) {
-        force = Math.abs(x + y + z - lastX - lastY - lastZ);
-        if (force > threshold) {
-            listener.onShake(force);
+    // the method to make a 3D model location marker and add an OnTapListener
+    private fun getMarker(car: Car) : Node {
+        val node = Node()
+        node.renderable = modelRenderable
+        node.setOnTapListener {hitTestResult, motionEvent ->
+            ShowCarInfo(car)
         }
-        lastX = x;
-        lastY = y;
-        lastZ = z;
-        lastUpdate = now;
+        return node
     }
-}
 
-// Source: StackOverflow [3]
+    // the method to make a 2D view location marker and add an OnTapListener
+    private fun getView(car: Car) : Node {
+        val node = Node()
+        if (car.isavaliable)
+            node.renderable = availableCarLayoutRenderable
+        else node.renderable = rentedCarLayoutRenderable
+        node.setOnTapListener {hitTestResult, motionEvent ->
+            ShowCarInfo(car)
+        }
+        return node
+    }
+
+    // the method to start the CarDetails activity, with the car name globally available as a key
+    private fun ShowCarInfo(car: Car) {
+        val intent = Intent(this, CarDetails::class.java)
+
+        val sharedData = Globals.instance
+        sharedData.car_name = car.name
+        startActivity(intent)
+    }
 ```
+
+**Problem 2: We needed to return to the ChatList activity from the ChatLog fragment for admin users, but not for client users - as clients only have one person to talk to, they don't use the ChatList activity.**
+
+```
+// the ChatListFragment that is only used for admin users
+class ChatListFragment : Fragment() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity)!!.supportActionBar?.title = "Chat"
+
+        recyclerview_user_log.adapter = adapter
+
+        getUsers()
+
+        val sharedData = Globals.instance
+        if(sharedData.username != "admin")
+        {
+            sharedData.talkTo = "admin"
+            goToChatLog(false)
+        }
+    }
+
+    companion object {
+        lateinit var fragment: Fragment
+        // adds the fragment transaction to the backstack if addToBackstack is true
+        // this allows us to selectively 
+        fun goToChatLog(addToBackstack: Boolean) {
+            val transaction = fragment!!.childFragmentManager.beginTransaction()
+            val chatLog: Fragment = ChatLogFragment()
+            transaction.replace(R.id.constraintLayout, chatLog)
+            if (addToBackstack) {
+                transaction.addToBackStack(null)
+            }
+            transaction.commit()
+        }
+    }
+    ...
+}
+```
+
+```
+// the ChatListItem that appears in ChatListFragment
+class ChatListItem(val userName: String, val userImage: String): Item<ViewHolder>() {
+    override fun bind(viewHolder: ViewHolder, position: Int) {
+        viewHolder.itemView.txtName.text = userName
+
+        val uri = userImage
+        val targetImageView = viewHolder.itemView.img_Car_Img
+        Picasso.get().load(uri).into(targetImageView)
+
+        viewHolder.itemView.img_Car_Img?.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(view: View) {
+                setUser()
+
+                ChatListFragment.goToChatLog(true)
+            }
+        })
+
+        viewHolder.itemView.txtName?.setOnClickListener(object: View.OnClickListener {
+            override fun onClick(view: View) {
+                setUser()
+                ChatListFragment.goToChatLog(true)
+            }
+        })
+    }
+    ...
+}
+```
+
+**Problem 3: We needed the user to be able to highlight a specific route out of the many given to their destination**
+```
+class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickListener {
+    // creates routes between the users location and a chosen marker on the map
+    private fun calculateDirections(marker:Marker) {
+        var destination = com.google.maps.model.LatLng(
+                marker.getPosition().latitude,
+                marker.getPosition().longitude
+        )
+        var directions = DirectionsApiRequest(mGeoApiContext)
+        directions.alternatives(true)
+        directions.origin(
+                com.google.maps.model.LatLng(
+                        lat,
+                        lang
+                )
+        )
+        directions.destination(destination).setCallback(object:PendingResult.Callback<DirectionsResult> {
+            override fun onResult(result:DirectionsResult) {
+                addPolylinesToMap(result)
+            }
+            ...
+        })
+    }
+    
+    ...
+    
+    // highlights the selected route when pressed
+    override fun onPolylineClick(polyline:Polyline) {
+        var index = 0
+        for (polylineData in mPolyLinesData)
+        {
+            index++
+            if (polyline.getId().equals(polylineData.polyline.getId()))
+            {
+                polylineData.polyline.setColor(ContextCompat.getColor(activity!!, R.color.blue1))
+                polylineData.polyline.setZIndex(1f)
+                val endLocation = LatLng(
+                        polylineData.leg.endLocation.lat,
+                        polylineData.leg.endLocation.lng
+                )
+                val marker = mMap.addMarker(MarkerOptions()
+                        .position(endLocation)
+                        .title("Route #" + index)
+                        .snippet("Duration: " + polylineData.leg.duration))
+                mTripMarkers.add(marker)
+                marker.showInfoWindow()
+            }
+            else
+            {
+                polylineData.polyline.setColor(ContextCompat.getColor(activity!!, R.color.darkGrey))
+                polylineData.polyline.setZIndex(0f)
+            }
+        }
+    }
+    ...
+}
+```
+
 
 ## Functional Decomposition
 
