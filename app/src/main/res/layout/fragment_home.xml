@@ -214,7 +214,7 @@
             app:layout_constraintTop_toTopOf="@+id/logoutButton" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/refreshh"
+            android:id="@+id/logoutButton"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginTop="450dp"

@@ -149,7 +149,7 @@
             app:layout_constraintTop_toTopOf="@+id/send_audio_button" />
 
         <TextView
-            android:id="@+id/logoutTextView"
+            android:id="@+id/refreshtTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
