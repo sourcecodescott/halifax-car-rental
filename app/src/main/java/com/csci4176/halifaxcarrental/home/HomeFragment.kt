@@ -113,10 +113,10 @@ class HomeFragment : Fragment() {
     {
         floatingActionsLayout = root.findViewById(R.id.floatingActionsLayout)
         optionsFloatingActionButton = root.findViewById(R.id.optionsFloatingActionButton)
-        //logoutButton = root.findViewById(R.id.logoutButton)
+        logoutButton = root.findViewById(R.id.logoutButton)
 
         optionsFloatingActionButton.setOnClickListener { showHideFloatingActions() }
-        //logoutButton.setOnClickListener { logout() }
+        logoutButton.setOnClickListener { logout() }
 
         returnButton = root.findViewById(R.id.returnButton)
         returnButton.setOnClickListener { v ->
