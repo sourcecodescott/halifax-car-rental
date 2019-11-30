@@ -126,7 +126,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="86dp"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc nunc nisi, posuere ut consequat eu, commodo eget lorem. Nullam mattis dolor a odio suscipit, eget accumsan ante aliquet. Curabitur sit amet quam quis ante tristique sagittis nec eu quam. Nunc tempor mattis libero, a viverra lacus. Ut ut augue dui. Nam sed gravida mi. Vestibulum auctor augue vel congue lobortis."
-                android:textSize="13dp"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
