@@ -68,7 +68,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:679541921037:android:4872b7a122af0b8fdf4c44",
         "android_client_info": {
-          "package_name": "com.example.halifaxcarrental"
+          "package_name": "com.csci4176.halifaxcarrental"
         }
       },
       "oauth_client": [

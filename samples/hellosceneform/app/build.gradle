@@ -19,7 +19,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.halifaxcarrental"
+        applicationId "com.csci4176.halifaxcarrental"
 
         // Sceneform requires minSdkVersion >= 24.
         minSdkVersion 24

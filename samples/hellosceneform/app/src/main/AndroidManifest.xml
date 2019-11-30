@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.halifaxcarrental">
+    package="com.csci4176.halifaxcarrental">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- Sceneform requires OpenGLES 3.0 or later. -->
@@ -32,15 +32,15 @@
         android:largeHeap="true"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name="com.example.halifaxcarrental.chat.ChatListFragment"></activity>
-        <activity android:name="com.example.halifaxcarrental.car.CarListFragment" />
-        <activity android:name="com.example.halifaxcarrental.car.CarDetails" />
-        <activity android:name="com.example.halifaxcarrental.chat.ChatLogFragment" />
-        <activity android:name="com.example.halifaxcarrental.chat.NewMessage" />
-        <activity android:name="com.example.halifaxcarrental.chat.LatestMessages" />
-        <activity android:name="com.example.halifaxcarrental.chat.Messenger" />
-        <activity android:name="com.example.halifaxcarrental.chat.PlayAudio"></activity>
-        <activity android:name="com.example.halifaxcarrental.chat.RecordAudio" />
+        <activity android:name="com.csci4176.halifaxcarrental.chat.ChatListFragment"></activity>
+        <activity android:name="com.csci4176.halifaxcarrental.car.CarListFragment" />
+        <activity android:name="com.csci4176.halifaxcarrental.car.CarDetails" />
+        <activity android:name="com.csci4176.halifaxcarrental.chat.ChatLogFragment" />
+        <activity android:name="com.csci4176.halifaxcarrental.chat.NewMessage" />
+        <activity android:name="com.csci4176.halifaxcarrental.chat.LatestMessages" />
+        <activity android:name="com.csci4176.halifaxcarrental.chat.Messenger" />
+        <activity android:name="com.csci4176.halifaxcarrental.chat.PlayAudio"></activity>
+        <activity android:name="com.csci4176.halifaxcarrental.chat.RecordAudio" />
         <activity android:name=".MainActivity" android:label="@string/app_name" />
         <activity  android:name=".home.SearchActivity" android:label="Search"/>
         <activity android:name=".ar.ARActivity" android:label="Augmented Reality"/>
@@ -55,15 +55,15 @@
             </intent-filter>
         </activity>
 
-        <!--provider
+        <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="com.csci4176.halifaxcarrental.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
-        </provider-->
+        </provider>
 
         <meta-data
             android:name="com.google.ar.core"
