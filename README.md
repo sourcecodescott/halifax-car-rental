@@ -33,56 +33,76 @@ Some users will be familiar with their area while using the application, while o
 ## Libraries
 Dependencies
 ---------------
-Google dependencies
-
-**com.google.android.material:material:1.0.0**
+Google
 
 Google play services
 
+
 **com.google.android.gms:play-services-auth:8.4.0**
+
 **com.google.android.gms:play-services-maps:17.0.0**
+
 **com.google.android.gms:play-services-location:17.0.0**
+
 
 Google maps
 
 **com.google.maps.android:android-maps-utils:0.5+**
+
 **com.google.maps:google-maps-services:0.2.9**
+
 
 Sceneform
 
 **com.google.ar.sceneform:core:1.10.0**
+
 **com.google.ar.sceneform.ux:sceneform-ux:1.10.0**
+
 
 FireBase
 
 **com.google.firebase:firebase-core:16.0.7**
+
 **com.google.firebase:firebase-firestore:17.1.5**
+
 **com.google.firebase:firebase-analytics:16.1.5**
+
 **com.google.firebase:firebase-storage:16.0.1**
+
 **com.google.firebase:firebase-database:16.0.1**
+
+
+**com.google.android.material:material:1.0.0**
+
 
 Other dependencies
 
-**com.github.appoly:ARCore-Location:1.0.5** Appoly ARCore Location - allows objects to be placed in ARCore using geographic coordinates
 **com.firebaseui:firebase-ui-firestore:4.3.1**
+
 **org.slf4j:slf4j-nop:1.7.25**
+
 **de.hdodenhof:circleimageview:2.2.0**
+
 **com.xwray:groupie:2.1.0**
+
 **com.squareup.picasso:picasso:2.71828**
 
--------------------------
+**com.github.appoly:ARCore-Location:1.0.5.** Appoly ARCore Location allows objects to be placed in ARCore using geographic coordinates.  Source [here](https://github.com/appoly/ARCore-Location)
 
-**arcore-for-all** ARCore for all is a library that allows devices that are not supported by ARCore, yet have the appropriate hardware to run ARCore, to do so. It replaces the arcore_client library with a modified version. Source [here](https://github.com/tomthecarrot/arcore-for-all)
+**arcore-for-all.** ARCore for all is a library that allows devices that are not supported by ARCore, yet have the appropriate hardware to run ARCore, to do so. It replaces the arcore_client library with a modified version. Source [here](https://github.com/tomthecarrot/arcore-for-all)
+
+
+Images
 
 **Kameleon Free Pack - Rounded.** Icon set by Webalys on ICONFINDER. Source [here](https://www.iconfinder.com/iconsets/kameleon-free-pack-rounded)
 
 **Circle Icons.** Icon set by Nick Roach on ICONFINDER. Source [here](https://www.iconfinder.com/iconsets/circle-icons-1)
 
-**Camera, dual, iphone 7 icon** Icon by Webalys ICONFINDER. Source [here](https://cdn0.iconfinder.com/data/icons/iphone-7-airpods-icons-solid-style/24/dual-camera-2_1-128.png)
+**Camera, dual, iphone 7 icon.** Icon by Webalys ICONFINDER. Source [here](https://cdn0.iconfinder.com/data/icons/iphone-7-airpods-icons-solid-style/24/dual-camera-2_1-128.png)
 
 **Car Placeholder Free.** Icon by Freepik on FLATICON. Source [here](https://www.flaticon.com/free-icon/car-placeholder_75782.)
 
-**Plus icon** Icon on ICONFINDER. Source [here](https://cdn4.iconfinder.com/data/icons/keynote-and-powerpoint-icons/256/Plus-128.png)
+**Plus icon.** Icon on ICONFINDER. Source [here](https://cdn4.iconfinder.com/data/icons/keynote-and-powerpoint-icons/256/Plus-128.png)
 
 **Refresh Icons.** Icons on icons8. Source [here](https://icons8.com/icons/set/refresh)
 
@@ -90,6 +110,29 @@ Other dependencies
 
 **Focus2move: World Best Selling Car - The top 100 in 2019.** Images on focus2move. Source [here](https://focus2move.com/world-best-selling-car/)
 
+**Map Marker.** Model by Chris Ross on poly.google.com. Source [here](https://poly.google.com/view/6ij4nru_NPh)
+
+**Car, list icon.** Icon by Webalys on ICONFINDER. Source [here](https://www.iconfinder.com/icons/377493/car_list_icon)
+
+**File:Information.png.** Image on WIKIPEDIA. Source [here](https://en.wikipedia.org/wiki/File:Information.png)
+
+**Car parking, gps, map pin, parking, placeholder icon.** Icon by Creative Stall on ICONFINDER. Source[here](https://www.iconfinder.com/icons/2124530/car_parking_gps_map_pin_parking_placeholder_icon)
+
+**City map, home gps, home location, home map pointer, home pin icon.** Icon by Vectors Market on ICONFINDER. Source [here](https://www.iconfinder.com/icons/2699295/city_map_home_gps_home_location_home_map_pointer_home_pin_icon)
+
+**Parking Area Sign (Left Arrow)** Image on SafetySign.com. Source [here](https://www.safetysign.com/products/8053/big-p-parking-left-sign)
+
+**Free Refresh Icon** Icon on icons8.com. Source [here](https://icons8.com/icon/3N62NpxoF0tf/refresh)
+
+**Acura 2020 ILX** Images on acura.com. Source [here](https://www.acura.com/ilx)
+
+**The 2019 A5 Coupé** Images on audi.com. Source [here](https://www.audi.ca/ca/web/en/models/a5/a5-coupe-new.html)
+
+**BMW i3** Images on WIKIPEDIA. Source [here](https://en.wikipedia.org/wiki/BMW_i3)
+
+**HONDA Civic** Images on driving.ca. Source [here](ttps://driving.ca/honda/civic)
+
+**Kia Cadenza** Images on guideautoweb.com. Source [here](https://www.guideautoweb.com/en/makes/kia/cadenza/2019/)
 
 
 ## Requirements
