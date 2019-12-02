@@ -55,11 +55,6 @@ class HomeFragment : Fragment() {
         getReferences(root)
         setListeners()
 
-
-
-
-
-
         return root
     }
 
@@ -129,9 +124,6 @@ class HomeFragment : Fragment() {
         db.collection("Rent").document(sharedData.username.toString())
                 .delete()
 
-
-
-
         db.collection("Car").document(sharedData.car_name.toString())
                 .update(
                         "isavaliable", true
@@ -142,7 +134,6 @@ class HomeFragment : Fragment() {
         sharedData.rentPin = ""
 
         Toast.makeText(this.context, "Car Successfully Returned!!", Toast.LENGTH_SHORT).show()
-
     }
 
 
@@ -158,14 +149,6 @@ class HomeFragment : Fragment() {
         returnButton = root.findViewById(R.id.returnButton)
         returnButton.setOnClickListener { v ->
             returnCar()
-
-
-
-
-
-
-
-
 
             returnButton.visibility = View.GONE
             rentedCarText.visibility = View.GONE
@@ -183,12 +166,13 @@ class HomeFragment : Fragment() {
 
             goToSearchActivity()
         }
+
         arCardView.setOnClickListener { goToARActivity() }
     }
 
     fun goToSearchActivity()
     {
-        val intent = Intent(this.context, SearchActivity::class.java)
+        val intent = Intent(activity!!.applicationContext, SearchActivity::class.java)
         startActivity(intent)
     }
 
