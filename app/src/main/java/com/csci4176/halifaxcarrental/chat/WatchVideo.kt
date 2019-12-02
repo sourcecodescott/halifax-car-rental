@@ -11,6 +11,7 @@ import android.widget.MediaController
 import androidx.activity.OnBackPressedCallback
 import com.csci4176.halifaxcarrental.Globals
 import com.csci4176.halifaxcarrental.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class WatchVideo : Fragment() {
 
@@ -20,12 +21,13 @@ class WatchVideo : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.activity_watch_video, container, false)
-
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity!!.findViewById<FloatingActionButton>(R.id.optionsFloatingActionButton).hide()
 
         initiateVideoPlayer()
         playVideo()
@@ -33,6 +35,7 @@ class WatchVideo : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(this, object:OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 stopVideo()
+                activity!!.findViewById<FloatingActionButton>(R.id.optionsFloatingActionButton).show()
                 fragmentManager!!.popBackStack()
             }
         })

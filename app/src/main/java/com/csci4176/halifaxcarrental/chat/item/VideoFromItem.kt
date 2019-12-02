@@ -36,7 +36,7 @@ class VideoFromItem(val content_video: String, val user: String, val fragmentMan
 
                     val transaction = fragmentManager.beginTransaction()
 
-                    transaction.replace(R.id.nav_host_fragment, fragment)
+                    transaction.replace(R.id.constraintLayout, fragment)
                     transaction.addToBackStack(null)
 
                     transaction.commit()
