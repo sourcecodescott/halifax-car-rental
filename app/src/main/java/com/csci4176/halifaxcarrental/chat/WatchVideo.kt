@@ -21,6 +21,15 @@ class WatchVideo : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.activity_watch_video, container, false)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, object:OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                stopVideo()
+                activity!!.findViewById<FloatingActionButton>(R.id.optionsFloatingActionButton).show()
+                fragmentManager!!.popBackStack()
+            }
+        })
+
         return root
     }
 
@@ -31,14 +40,6 @@ class WatchVideo : Fragment() {
 
         initiateVideoPlayer()
         playVideo()
-
-        requireActivity().onBackPressedDispatcher.addCallback(this, object:OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                stopVideo()
-                activity!!.findViewById<FloatingActionButton>(R.id.optionsFloatingActionButton).show()
-                fragmentManager!!.popBackStack()
-            }
-        })
     }
 
     fun initiateVideoPlayer() {
