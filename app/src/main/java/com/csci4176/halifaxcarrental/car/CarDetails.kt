@@ -4,6 +4,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.view.isVisible
 import com.csci4176.halifaxcarrental.Globals
 import com.csci4176.halifaxcarrental.R
 import com.google.android.gms.tasks.OnSuccessListener
@@ -23,6 +24,8 @@ class CarDetails : AppCompatActivity() {
     var  ischeck = true
     var  yourCar = false
     var carPricee = 0f
+    var currentCar: Car? = null
+    val sharedData = Globals.instance
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +50,8 @@ class CarDetails : AppCompatActivity() {
     }
 
 
+
+
     fun saveRent(customerID:String, rentID:String) {
 
         val sharedData = Globals.instance
@@ -57,6 +62,16 @@ class CarDetails : AppCompatActivity() {
 
         var r = Rent(customerID,rentID,generatedPin,carPricee)
         rentRef.set(r).addOnSuccessListener {
+
+            sharedData.car_name = rentID
+            sharedData.rentedCar = currentCar
+
+
+            db.collection("Car").document(currentCar!!.name.toString())
+                    .update(
+                            "isavaliable", false
+                    )
+
 
             Toast.makeText(this@CarDetails, "Car Successfully Rented!", Toast.LENGTH_SHORT).show()
             btnrent.text = "Return Car"
@@ -73,6 +88,13 @@ class CarDetails : AppCompatActivity() {
                 .delete()
 
 
+        sharedData.car_name = ""
+        sharedData.rentedCar = null
+
+        db.collection("Car").document(currentCar!!.name.toString())
+                .update(
+                        "isavaliable", true
+                )
 
         Toast.makeText(this@CarDetails, "Car Successfully Returned!!", Toast.LENGTH_SHORT).show()
         btnrent.text = "Rent Car"
@@ -84,6 +106,12 @@ class CarDetails : AppCompatActivity() {
         super.onStart()
 
         getCar()
+
+        if(sharedData.username == "admin")
+        {
+            btnrent.isEnabled = false
+            btnrent.isVisible = false
+        }
     }
 
 
@@ -151,6 +179,9 @@ class CarDetails : AppCompatActivity() {
                                     txtPrice.text = "$"+carr.price
                                     txtYear.text = carr.year
                                     carPricee = carr.price!!.toFloat()
+                                    lbldiscript.text = carr.description
+
+                                    currentCar = carr
 
                                 }
 

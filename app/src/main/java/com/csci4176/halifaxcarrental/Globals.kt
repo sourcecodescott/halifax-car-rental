@@ -15,6 +15,8 @@ class Globals {
 
     var car_name: String? = null
 
+    var addedCost: Float? = null
+
     var rentedCar: Car? = null
 
     fun getValue(): String? {

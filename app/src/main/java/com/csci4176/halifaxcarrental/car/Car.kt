@@ -12,8 +12,9 @@ class Car:Serializable {
     var isavaliable:Boolean = false
     var car_image:String? = null
     var price:String? = null
+    var description:String? = null
     constructor() {}
-    constructor(name:String, make:String, model:String, lang:String, lat:String, year:String, isavaliable:Boolean,car_image:String,price:String) {
+    constructor(name:String, make:String, model:String, lang:String, lat:String, year:String, isavaliable:Boolean,car_image:String,price:String,description:String?) {
         this.name = name
         this.make = make
         this.model = model
