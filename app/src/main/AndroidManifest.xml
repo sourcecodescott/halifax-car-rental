@@ -32,9 +32,6 @@
             android:name=".ar.ARActivity"
             android:label="Augmented Reality" />
         <activity
-            android:name=".ARActivity"
-            android:label="Augmented Reality" />
-        <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_maps">
             <intent-filter>
