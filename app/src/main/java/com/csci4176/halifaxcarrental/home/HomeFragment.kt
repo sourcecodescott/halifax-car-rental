@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
             modelTextView.text = sharedData.rentedCar!!.model
             yearTextView.text = sharedData.rentedCar!!.year
             availableTextView.text = "Rented"
-            distanceTextView.text = ""
+            distanceTextView.text = "PIN: "+sharedData.rentPIN
             priceTextView.text = "$" + sharedData.rentedCar!!.price
 
             Picasso.get()
@@ -139,6 +139,7 @@ class HomeFragment : Fragment() {
 
         sharedData.car_name = ""
         sharedData.rentedCar = null
+        sharedData.rentPIN = ""
 
         Toast.makeText(this.context, "Car Successfully Returned!!", Toast.LENGTH_SHORT).show()
 
@@ -180,12 +181,7 @@ class HomeFragment : Fragment() {
     {
         searchCardView.setOnClickListener {
 
-            val transaction = childFragmentManager.beginTransaction()
-            val carList: Fragment = CarListFragment()
-            transaction.replace(R.id.constraintLayout, carList)
-            transaction.addToBackStack(null)
-
-            transaction.commit()
+            goToSearchActivity()
         }
         arCardView.setOnClickListener { goToARActivity() }
     }

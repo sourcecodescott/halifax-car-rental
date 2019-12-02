@@ -110,6 +110,7 @@ class LoginActivity : AppCompatActivity() {
                                 if (rentC.customerID == sharedData.username) {
 
                                     sharedData.car_name = rentC.carID
+                                    sharedData.rentPIN = rentC.rentPin
                                     setRentedCar()
                                     //Toast.makeText(this@LoginActivity,"Rented Car: "+ sharedData.car_name , Toast.LENGTH_SHORT).show()
                                 }

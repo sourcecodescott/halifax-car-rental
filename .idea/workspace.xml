@@ -10,21 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e3711b5-5563-4708-8e2d-54eab1d0f7c2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/ViewImage.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_view_image.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/Globals.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/Globals.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/Car.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/Car.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/ar/ARActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/ar/ARActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/CarDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/CarDetails.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/item/ImageFromItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/item/ImageFromItem.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/item/ImageToItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/item/ImageToItem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/home/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/map/MapFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/map/MapFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/cardview_car_large.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cardview_car_large.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/legend_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/legend_layout.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,20 +42,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/LoginActivity.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/map/MapFragment.kt">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/CarDetails.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="765" column="25" selection-start-line="764" selection-start-column="16" selection-end-line="769" selection-end-column="36" />
+            <state relative-caret-position="794">
+              <caret line="93" column="16" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -72,18 +62,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/home/HomeFragment.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="180" column="43" lean-forward="true" selection-start-line="180" selection-start-column="43" selection-end-line="180" selection-end-column="43" />
+            <state relative-caret-position="511">
+              <caret line="86" column="62" selection-start-line="86" selection-start-column="62" selection-end-line="86" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/cardview_car_large.xml">
-          <provider selected="true" editor-type-id="android-designer2" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="95" column="30" lean-forward="true" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/Globals.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -111,6 +100,9 @@
       <find>RETURN</find>
       <find>XX</find>
       <find>CarListFragment()</find>
+      <find>saveRent</find>
+      <find>ShowCar</find>
+      <find>rentedCar</find>
     </findStrings>
     <replaceStrings>
       <replace>content_image</replace>
@@ -155,32 +147,32 @@
         <option value="$PROJECT_DIR$/app/src/main/res/xml/file_paths.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/RecordAudio.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/ChatLogFragment.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/ar/ARActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/ChatListFragment.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_map.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/Rent.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/legend_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/CarDetails.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/Car.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/item/ImageFromItem.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/chat/item/ImageToItem.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_view_image.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/ViewImage.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/Globals.kt" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/LoginActivity.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/map/MapFragment.kt" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/cardview_car_large.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/ar/ARActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/Globals.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/LoginActivity.kt" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/CarDetails.kt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/home/HomeFragment.kt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-103" />
-    <option name="y" value="-19" />
-    <option name="width" value="2278" />
-    <option name="height" value="1527" />
+    <option name="x" value="-104" />
+    <option name="y" value="-20" />
+    <option name="width" value="2279" />
+    <option name="height" value="1528" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -189,6 +181,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -226,21 +219,6 @@
               <item name="halifax-car-rental-app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="halifaxcarrental" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="halifax-car-rental" type="1abcf292:AndroidViewProjectNode" />
-              <item name="halifax-car-rental-app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="halifaxcarrental" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="chat" type="462c0819:PsiDirectoryNode" />
-              <item name="item" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="halifax-car-rental" type="1abcf292:AndroidViewProjectNode" />
-              <item name="halifax-car-rental-app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="halifaxcarrental" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -250,29 +228,11 @@
               <item name="halifaxcarrental" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="map" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="halifax-car-rental" type="1abcf292:AndroidViewProjectNode" />
-              <item name="halifax-car-rental-app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="halifax-car-rental" type="1abcf292:AndroidViewProjectNode" />
-              <item name="halifax-car-rental-app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="halifax-car-rental" type="1abcf292:AndroidViewProjectNode" />
-              <item name="halifax-car-rental-app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="navigation" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -801,13 +761,6 @@
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/ar/ARActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="749">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
@@ -881,13 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/Globals.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml">
       <provider selected="true" editor-type-id="nav-designer" />
       <provider editor-type-id="text-editor" />
@@ -911,47 +857,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/LoginActivity.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/CarDetails.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="39" column="13" lean-forward="true" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/cardview_car_large.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1615">
+          <caret line="95" column="30" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="327">
+        <state relative-caret-position="3111">
           <caret line="183" column="31" selection-start-line="183" selection-start-column="31" selection-end-line="183" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/cardview_car_large.xml">
-      <provider selected="true" editor-type-id="android-designer2" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="95" column="30" lean-forward="true" selection-start-line="95" selection-start-column="30" selection-end-line="95" selection-end-column="30" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/ar/ARActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="143" column="39" selection-start-line="143" selection-start-column="39" selection-end-line="143" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/Globals.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="17" lean-forward="true" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/map/MapFragment.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="765" column="25" selection-start-line="764" selection-start-column="16" selection-end-line="769" selection-end-column="36" />
+        <state relative-caret-position="4217">
+          <caret line="778" column="13" lean-forward="true" selection-start-line="778" selection-start-column="13" selection-end-line="778" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/LoginActivity.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/car/CarDetails.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="794">
+          <caret line="93" column="16" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/csci4176/halifaxcarrental/home/HomeFragment.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="180" column="43" lean-forward="true" selection-start-line="180" selection-start-column="43" selection-end-line="180" selection-end-column="43" />
+        <state relative-caret-position="511">
+          <caret line="86" column="62" selection-start-line="86" selection-start-column="62" selection-end-line="86" selection-end-column="62" />
         </state>
       </provider>
     </entry>

@@ -17,6 +17,7 @@ package com.csci4176.halifaxcarrental.ar
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,7 @@ import com.csci4176.halifaxcarrental.Globals
 import com.csci4176.halifaxcarrental.R
 import com.csci4176.halifaxcarrental.car.Car
 import com.csci4176.halifaxcarrental.car.CarDetails
+import com.csci4176.halifaxcarrental.car.Rent
 import com.google.android.material.snackbar.Snackbar
 import com.google.ar.core.*
 import com.google.ar.core.exceptions.CameraNotAvailableException
@@ -45,8 +47,8 @@ import com.google.ar.sceneform.ux.ArFragment
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.cardview_car_large.*
 
-import java.util.ArrayList
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ExecutionException
 
@@ -54,6 +56,7 @@ import uk.co.appoly.arcorelocation.LocationMarker
 import uk.co.appoly.arcorelocation.LocationScene
 import uk.co.appoly.arcorelocation.rendering.LocationNodeRender
 import uk.co.appoly.arcorelocation.utils.ARLocationPermissionHelper
+import java.util.*
 
 /**
  * This is a simple example that shows how to create an augmented reality (AR) application using the
@@ -68,6 +71,7 @@ class ARActivity : AppCompatActivity() {
     private var loadingMessageSnackbar: Snackbar? = null
 
     private var arSceneView: ArSceneView? = null
+    var db = FirebaseFirestore.getInstance()
 
     private var rentedCarLayoutRenderable: ViewRenderable? = null
     private var rentedCarLayout: CompletableFuture<ViewRenderable>? = null
@@ -152,6 +156,8 @@ class ARActivity : AppCompatActivity() {
         sharedData.car_name = car.name
         startActivity(intent)
     }
+
+
 
     private fun getReferences() {
         arSceneView =

@@ -6,6 +6,8 @@ class Globals {
     var notification_index: String? = null
     var username: String? = null
 
+    var rentPIN: String? = null
+
     var videoToPlay: String? = null
     var photoToView: String? = null
 
