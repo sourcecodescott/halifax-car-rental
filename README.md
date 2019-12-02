@@ -1,3 +1,7 @@
+### This README is not up to date - see Halifax Car Rental.doxc
+
+
+
 # Halifax Car Rental
 
 Halifax Car Rental is an application designed for use by customers and representatives of an imagined car rental agency in Halifax. 
