@@ -3,6 +3,7 @@ package com.csci4176.halifaxcarrental.home
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,9 +17,12 @@ import androidx.fragment.app.Fragment
 import com.csci4176.halifaxcarrental.Globals
 import com.csci4176.halifaxcarrental.LoginActivity
 import com.csci4176.halifaxcarrental.R
+import com.csci4176.halifaxcarrental.car.CarListFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.firestore.FirebaseFirestore
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.cardview_car_large.*
 import kotlinx.android.synthetic.main.fragment_map.*
 import kotlinx.android.synthetic.main.fragment_map.optionsFloatingActionButton
 
@@ -35,11 +39,12 @@ class HomeFragment : Fragment() {
     private lateinit var carCardView: CardView
 
     private lateinit var returnButton: Button
+    var db = FirebaseFirestore.getInstance()
 
     private var showFloatingActions = false
     private lateinit var optionsFloatingActionButton: FloatingActionButton
     private lateinit var logoutButton: FloatingActionButton
-
+    val sharedData = Globals.instance
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,11 +55,23 @@ class HomeFragment : Fragment() {
         getReferences(root)
         setListeners()
 
-        if (Globals.instance.rentedCar != null) {
+
+
+
+
+
+        return root
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+
+        if (sharedData.rentedCar != null) {
             returnButton.visibility = View.VISIBLE
             rentedCarText.visibility = View.VISIBLE
             carCardView.visibility = View.VISIBLE
-            val distanceTextView = carCardView.findViewById<TextView>(R.id.txtDistance)
+             val distanceTextView = carCardView.findViewById<TextView>(R.id.txtDistance)
             val nameTextView = carCardView.findViewById<TextView>(R.id.txtName)
             val makeTextView = carCardView.findViewById<TextView>(R.id.txtMake)
             val modelTextView = carCardView.findViewById<TextView>(R.id.txtModel)
@@ -62,16 +79,16 @@ class HomeFragment : Fragment() {
             val availableTextView = carCardView.findViewById<TextView>(R.id.txtAvailable)
             val priceTextView = carCardView.findViewById<TextView>(R.id.txtFee)
 
-            nameTextView.text = Globals.instance.rentedCar!!.name
-            makeTextView.text = Globals.instance.rentedCar!!.make
-            modelTextView.text = Globals.instance.rentedCar!!.model
-            yearTextView.text = Globals.instance.rentedCar!!.year
+            nameTextView.text = sharedData.rentedCar!!.name
+            makeTextView.text = sharedData.rentedCar!!.make
+            modelTextView.text = sharedData.rentedCar!!.model
+            yearTextView.text = sharedData.rentedCar!!.year
             availableTextView.text = "Rented"
-            distanceTextView.text = "Nearby"
-            priceTextView.text = "$" + Globals.instance.rentedCar!!.price
+            distanceTextView.text = ""
+            priceTextView.text = "$" + sharedData.rentedCar!!.price
 
             Picasso.get()
-                    .load(Globals.instance.rentedCar!!.car_image)
+                    .load(sharedData.rentedCar!!.car_image)
                     .into(carCardView.findViewById<de.hdodenhof.circleimageview.CircleImageView>(R.id.img_Car_Img))
         }
 
@@ -81,8 +98,6 @@ class HomeFragment : Fragment() {
             carCardView.visibility = View.GONE
         }
         showHideFloatingActions()
-
-        return root
     }
 
     private fun logout() {
@@ -108,6 +123,27 @@ class HomeFragment : Fragment() {
         showFloatingActions = !showFloatingActions
     }
 
+    fun returnCar()
+    {
+        val sharedData = Globals.instance
+        db.collection("Rent").document(sharedData.username.toString())
+                .delete()
+
+
+
+
+        db.collection("Car").document(sharedData.car_name.toString())
+                .update(
+                        "isavaliable", true
+                )
+
+        sharedData.car_name = ""
+        sharedData.rentedCar = null
+
+        Toast.makeText(this.context, "Car Successfully Returned!!", Toast.LENGTH_SHORT).show()
+
+    }
+
 
     fun getReferences(root: View)
     {
@@ -120,7 +156,15 @@ class HomeFragment : Fragment() {
 
         returnButton = root.findViewById(R.id.returnButton)
         returnButton.setOnClickListener { v ->
-            Globals.instance.rentedCar = null
+            returnCar()
+
+
+
+
+
+
+
+
 
             returnButton.visibility = View.GONE
             rentedCarText.visibility = View.GONE
@@ -134,7 +178,15 @@ class HomeFragment : Fragment() {
 
     fun setListeners()
     {
-        searchCardView.setOnClickListener { goToSearchActivity() }
+        searchCardView.setOnClickListener {
+
+            val transaction = childFragmentManager.beginTransaction()
+            val carList: Fragment = CarListFragment()
+            transaction.replace(R.id.constraintLayout, carList)
+            transaction.addToBackStack(null)
+
+            transaction.commit()
+        }
         arCardView.setOnClickListener { goToARActivity() }
     }
 

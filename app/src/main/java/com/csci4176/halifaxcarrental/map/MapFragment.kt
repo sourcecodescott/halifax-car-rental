@@ -25,12 +25,14 @@ import com.google.android.gms.location.LocationRequest
 
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Handler
 import android.widget.ImageView
 
 import com.google.android.gms.location.FusedLocationProviderClient
 
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.csci4176.halifaxcarrental.map.PolylineData
 import com.google.firebase.firestore.FirebaseFirestore
@@ -46,9 +48,11 @@ import com.google.maps.model.DirectionsResult
 import com.csci4176.halifaxcarrental.car.Car
 import com.csci4176.halifaxcarrental.car.CarDetails
 import com.csci4176.halifaxcarrental.car.CarListFragment
+import com.csci4176.halifaxcarrental.car.Rent
 import com.csci4176.halifaxcarrental.chat.ChatList
 import com.csci4176.halifaxcarrental.chat.ChatLogFragment
 import com.google.android.gms.location.LocationServices
+import kotlinx.android.synthetic.main.cardview_car_large.*
 import kotlinx.android.synthetic.main.fragment_map.*
 
 class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickListener {
@@ -103,6 +107,8 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
 
     var langg: Double = 0.toDouble()
     var lat: Double = 0.toDouble()
+
+    var rentlistRef = db.collection("Rent")
 
 
     private var showFloatingActions = false
@@ -440,6 +446,16 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
     }
 
 
+
+
+
+    fun getRentList() {
+
+
+
+    }
+
+
     fun getAvaliableCars() {
         carRef.get()
                 .addOnSuccessListener(object:OnSuccessListener<QuerySnapshot> {
@@ -452,12 +468,15 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
                             var lat = car.lat
                             var lang = car.lang
                             var isavaliable = car.isavaliable
+
                             if (isavaliable == true)
                             {
                                 var mDefaultLocation1 = LatLng(java.lang.Double.parseDouble(lat.toString()), java.lang.Double.parseDouble(lang.toString()))
                                 mMap.addMarker(MarkerOptions().position(mDefaultLocation1).icon(BitmapDescriptorFactory.fromResource(R.drawable.carimage))
                                         .title(car.name)
                                         .snippet("Make: " + car.make + "\nModel: " + car.model + "\nYear: " + car.year ))
+
+
                                 mMap.moveCamera(CameraUpdateFactory
                                         .newLatLngZoom(mDefaultLocation1, DEFAULT_ZOOM))
                                 mMap.setOnMarkerClickListener(object:GoogleMap.OnMarkerClickListener {
@@ -489,6 +508,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
                                         }
                                         else
                                         {
+
                                             var m = marker
                                             var builder = AlertDialog.Builder(activity!!)
                                             builder.setMessage(marker.getSnippet())
@@ -523,7 +543,104 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnPolylineClickLis
                             }
                             else {
                                 val sharedData = Globals.instance
-                                if (sharedData.username == "admin") {
+
+                                if (sharedData.username != "admin") {
+
+                                    if (sharedData.car_name == car.name){
+
+
+
+                                    var mDefaultLocation1 = LatLng(
+                                            java.lang.Double.parseDouble(lat.toString()),
+                                            java.lang.Double.parseDouble(lang.toString())
+                                    )
+                                    mMap.addMarker(
+                                            MarkerOptions().position(mDefaultLocation1).icon(
+                                                    BitmapDescriptorFactory.fromResource(R.drawable.rentedcar)
+                                            )
+                                                    .title(car.name)
+                                                    .snippet("Make: " + car.make + "\nModel: " + car.model + "\nYear: " + car.year)
+                                    )
+                                    mMap.moveCamera(
+                                            CameraUpdateFactory
+                                                    .newLatLngZoom(mDefaultLocation1, DEFAULT_ZOOM)
+                                    )
+                                    mMap.setOnMarkerClickListener(object :
+                                            GoogleMap.OnMarkerClickListener {
+                                        override fun onMarkerClick(marker: Marker): Boolean {
+                                            if (marker.title.equals("Parking") || marker.title.equals("Home")) {
+                                                var m = marker
+                                                var builder = AlertDialog.Builder(activity!!)
+                                                builder.setMessage(marker.getSnippet())
+                                                        .setCancelable(true)
+
+                                                        .setNegativeButton("Get Directions", object : DialogInterface.OnClickListener {
+                                                            override fun onClick(dialog: DialogInterface, id: Int) {
+                                                                calculateDirections(m)
+                                                                resetSelectedMarker()
+                                                                mSelectedMarker = m
+                                                                dialog.dismiss()
+                                                            }
+                                                        })
+                                                        .setPositiveButton("Close", object : DialogInterface.OnClickListener {
+                                                            override fun onClick(dialog: DialogInterface, id: Int) {
+
+
+                                                                dialog.dismiss()
+                                                            }
+                                                        })
+                                                val alert = builder.create()
+                                                alert.show()
+                                            } else {
+                                                var m = marker
+                                                var builder = AlertDialog.Builder(activity!!)
+                                                builder.setMessage(marker.getSnippet())
+                                                        .setCancelable(true)
+
+                                                        .setNegativeButton(
+                                                                "Get Directions",
+                                                                object : DialogInterface.OnClickListener {
+                                                                    override fun onClick(
+                                                                            dialog: DialogInterface,
+                                                                            id: Int
+                                                                    ) {
+                                                                        calculateDirections(m)
+                                                                        resetSelectedMarker()
+                                                                        mSelectedMarker = m
+                                                                        dialog.dismiss()
+                                                                    }
+                                                                })
+                                                        .setPositiveButton(
+                                                                "More Details...",
+                                                                object : DialogInterface.OnClickListener {
+                                                                    override fun onClick(
+                                                                            dialog: DialogInterface,
+                                                                            id: Int
+                                                                    ) {
+
+                                                                        val intent = Intent(
+                                                                                activity!!,
+                                                                                CarDetails::class.java
+                                                                        )
+
+                                                                        val sharedData = Globals.instance
+                                                                        sharedData.car_name = m.title
+                                                                        startActivity(intent)
+
+                                                                        //dialog.dismiss()
+                                                                    }
+                                                                })
+                                                val alert = builder.create()
+                                                alert.show()
+                                            }
+                                            return true
+                                        }
+                                    })
+                                }
+                            }
+
+
+                                else if (sharedData.username == "admin") {
 
                                     var mDefaultLocation1 = LatLng(
                                             java.lang.Double.parseDouble(lat.toString()),
