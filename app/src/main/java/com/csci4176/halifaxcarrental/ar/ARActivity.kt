@@ -266,6 +266,7 @@ class ARActivity : AppCompatActivity() {
     private fun addMarkers() {
         for (ARVehicleMarker in ARVehicleMarkers!!) {
             try {
+                /*
                 // create the 3D location marker
                 var layoutLocationMarker = LocationMarker(
                         ARVehicleMarker.latLng.lng,
@@ -280,7 +281,7 @@ class ARActivity : AppCompatActivity() {
                         90f)
 
                 locationScene!!.mLocationMarkers.add(layoutLocationMarker)
-
+                */
                 // anchor the node
                 /*
                 var pose = Pose.makeTranslation(layoutLocationMarker.node.worldPosition.x,
@@ -295,7 +296,7 @@ class ARActivity : AppCompatActivity() {
                 */
 
                 // create the 2D location marker
-                layoutLocationMarker = LocationMarker(
+                var layoutLocationMarker = LocationMarker(
                     ARVehicleMarker.latLng.lng,
                     ARVehicleMarker.latLng.lat,
 

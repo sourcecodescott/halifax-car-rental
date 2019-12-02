@@ -98,14 +98,6 @@ class PlayAudio : Fragment() {
 
         btnReturnMe.setOnClickListener(object: View.OnClickListener {
             override fun onClick(v: View) {
-                /*
-                val fragment = ChatLogFragment()
-                val transaction = childFragmentManager.beginTransaction()
-
-                transaction.replace(R.id.constraintLayout, fragment)
-                transaction.addToBackStack(null)
-
-                transaction.commit()*/
                 parentFragment!!.childFragmentManager.popBackStack()
             }
         })
