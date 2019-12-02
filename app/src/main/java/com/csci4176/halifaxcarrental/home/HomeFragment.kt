@@ -181,12 +181,7 @@ class HomeFragment : Fragment() {
     {
         searchCardView.setOnClickListener {
 
-            val transaction = childFragmentManager.beginTransaction()
-            val carList: Fragment = CarListFragment()
-            transaction.replace(R.id.constraintLayout, carList)
-            transaction.addToBackStack(null)
-
-            transaction.commit()
+            goToSearchActivity()
         }
         arCardView.setOnClickListener { goToARActivity() }
     }

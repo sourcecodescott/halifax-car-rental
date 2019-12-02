@@ -76,7 +76,6 @@ class CarDetails : AppCompatActivity() {
 
             Toast.makeText(this@CarDetails, "Car Successfully Rented!", Toast.LENGTH_SHORT).show()
             btnrent.text = "Return Car"
-            btnrent.setBackgroundColor(Color.RED)
             yourCar = true
         }
 
@@ -100,7 +99,6 @@ class CarDetails : AppCompatActivity() {
 
         Toast.makeText(this@CarDetails, "Car Successfully Returned!!", Toast.LENGTH_SHORT).show()
         btnrent.text = "Rent Car"
-        btnrent.setBackgroundColor(Color.GREEN)
         yourCar = false
     }
 
@@ -131,7 +129,6 @@ class CarDetails : AppCompatActivity() {
                                 if (rentC.customerID == sharedData.username && rentC.carID == sharedData.car_name) {
 
                                     btnrent.text = "Return Car"
-                                    btnrent.setBackgroundColor(Color.RED)
                                     yourCar = true
 
                                 }
@@ -140,7 +137,6 @@ class CarDetails : AppCompatActivity() {
 
                                     btnrent.text = "You Already have a car Rented"
                                     btnrent.isEnabled = false
-                                    btnrent.setBackgroundColor(Color.GRAY)
 
                                 }
 
@@ -148,7 +144,6 @@ class CarDetails : AppCompatActivity() {
                                 {
                                     btnrent.text = "Car Not Avaliable"
                                     btnrent.isEnabled = false
-                                    btnrent.setBackgroundColor(Color.GRAY)
 
                                 }
 
