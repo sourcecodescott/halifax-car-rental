@@ -5,6 +5,7 @@ import com.csci4176.halifaxcarrental.car.Car
 class Globals {
     var notification_index: String? = null
     var username: String? = null
+    var rentPin: String? = null
 
     var videoToPlay: String? = null
     var photoToView: String? = null

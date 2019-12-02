@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
             modelTextView.text = sharedData.rentedCar!!.model
             yearTextView.text = sharedData.rentedCar!!.year
             availableTextView.text = "Rented"
-            distanceTextView.text = ""
+            distanceTextView.text = "PIN: "+ sharedData.rentPin
             priceTextView.text = "$" + sharedData.rentedCar!!.price
 
             Picasso.get()
@@ -139,6 +139,7 @@ class HomeFragment : Fragment() {
 
         sharedData.car_name = ""
         sharedData.rentedCar = null
+        sharedData.rentPin = ""
 
         Toast.makeText(this.context, "Car Successfully Returned!!", Toast.LENGTH_SHORT).show()
 

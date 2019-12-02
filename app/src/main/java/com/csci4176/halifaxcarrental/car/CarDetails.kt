@@ -65,6 +65,7 @@ class CarDetails : AppCompatActivity() {
 
             sharedData.car_name = rentID
             sharedData.rentedCar = currentCar
+            sharedData.rentPin = generatedPin
 
 
             db.collection("Car").document(currentCar!!.name.toString())
@@ -90,6 +91,7 @@ class CarDetails : AppCompatActivity() {
 
         sharedData.car_name = ""
         sharedData.rentedCar = null
+        sharedData.rentPin = ""
 
         db.collection("Car").document(currentCar!!.name.toString())
                 .update(
